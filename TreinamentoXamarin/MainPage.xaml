@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TreinamentoXamarin.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TreinamentoXamarin.Controls">
+
+    <StackLayout Margin="10">
+
+        <Entry
+            BackgroundColor="Pink"
+            IsEnabled="{Binding IsEnabled}"
+            Text="">
+            <Entry.Triggers>
+                <MultiTrigger TargetType="Entry">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding IsEnabled, Source={RelativeSource Mode=Self}}" Value="False" />
+                        <BindingCondition Binding="{Binding Text, Source={RelativeSource Mode=Self}}" Value="Xuxa" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="BackgroundColor" Value="Firebrick" />
+                </MultiTrigger>
+            </Entry.Triggers>
+        </Entry>
+
+        <controls:Card
+            ActionCommand="{Binding ChangeIsEnabledCommand}"
+            HorizontalOptions="Start"
+            VerticalOptions="StartAndExpand"
+            WidthRequest="200">
+            <controls:Card.BuscaConteudo>
+                <StackLayout BindableLayout.ItemsSource="{Binding Ativos}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding SiglaAtivo}"
+                                    TextColor="White" />
+                                <Label
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding NomeAtivo}"
+                                    TextColor="Pink" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </controls:Card.BuscaConteudo>
+            <controls:Card.ComponentesConteudo>
+                <ListView
+                        BackgroundColor="Aqua"
+                        HeightRequest="200"
+                        ItemsSource="{Binding Ativos2}"
+                        WidthRequest="400">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding SiglaAtivo}"
+                                            TextColor="White" />
+                                    <Label
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding NomeAtivo}"
+                                            TextColor="Pink" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </controls:Card.ComponentesConteudo>
+        </controls:Card>
+    </StackLayout>
+
+</ContentPage>

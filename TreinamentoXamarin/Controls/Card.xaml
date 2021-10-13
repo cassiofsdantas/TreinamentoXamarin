@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TreinamentoXamarin.Controls.Card"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TreinamentoXamarin.Controls">
+    <ContentView.Content>
+        <Grid>
+            <BoxView BackgroundColor="{Binding CardBackgroundColor, Source={x:RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:Card}}}" CornerRadius="2" />
+            <StackLayout Margin="16" Spacing="16">
+                <Label Text="Busca de ativo" TextColor="White" />
+                <ContentView x:Name="buscaConteudo" />
+                <BoxView
+                    Margin="-16,0,-16,0"
+                    BackgroundColor="#607490"
+                    HeightRequest="1" />
+                <Label Text="Componentes controlados" TextColor="White" />
+                <ContentView x:Name="componentesConteudo" />
+
+                <Button
+                    Command="{Binding ActionCommand, Source={x:RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:Card}}}"
+                    CommandParameter="{Binding ActionCommandParameter, Source={x:RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:Card}}}"
+                    HeightRequest="18"
+                    HorizontalOptions="EndAndExpand"
+                    Text="DESVINCULAR ATIVO"
+                    WidthRequest="120" />
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
